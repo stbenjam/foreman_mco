@@ -1,13 +1,17 @@
 module ForemanMco
   class CommandsController < ::ApplicationController
+    attr_reader :command, :mco_proxy
+    before_filter :find_mco_proxy, :only => [:submit_command]
     before_filter :find_command, :only => [:submit_command]
 
     def install_package
     end
 
+    #TODO: a possible race condition here -- proxy *can* process remote job before we get to CommandStatus creation
     def submit_command
-      success = true
-      if success
+      response = mco_proxy.test
+      if response
+        CommandStatus.create!(:jid => response)
         process_success :success_redirect => hosts_path(), :success_msg => _("'%s' command has been queued up for execution") % command
       else
         process_error :redirect => hosts_path(), :error_msg => _("'%s' command has not been queued up: %s") % [command, 'fail!']
@@ -16,15 +20,15 @@ module ForemanMco
       process_error :redirect => hosts_path(), :error_msg => _("'%s' command has not been queued up: %s") % [command, e]
     end
 
-    attr_reader :command
     def find_command
       @command = params[:command]
       return process_error :redirect => :back, :error_msg => _("No command to execute") unless @command
     end
 
-    def find_smart_proxy
-      @mc_proxy = SmartProxy.joins(:features).where("features.name" => "MCollective").first
-      return process_error :redirect => :back, :error_msg => _("There are no configured mcollective proxies") unless @mc_proxy
+    def find_mco_proxy
+      db_proxy_record = SmartProxy.joins(:features).where("features.name" => "MCollective").first
+      @mco_proxy = ForemanMco::McoProxyApi.new(:url => db_proxy_record.url)
+      return process_error :redirect => :back, :error_msg => _("There are no configured mcollective proxies") unless @mco_proxy
     end
   end
 end
