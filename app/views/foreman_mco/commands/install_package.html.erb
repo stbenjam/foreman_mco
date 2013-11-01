@@ -1,6 +1,6 @@
 <%= form_for :command, :url => submit_command_commands_path() do |f| %>
-  <%= f.hidden_field :command, :value => "install" %>
-  <%= f.text_field :name %>
+  <%= f.hidden_field :command, :value => "install_package" %>
+  <%= f.text_field :package_name %>
   <span class="label label-warning"><%= _('Warning') %></span>
   <%= _('This might take a while, as install runs on all servers') %>
 <% end %>
