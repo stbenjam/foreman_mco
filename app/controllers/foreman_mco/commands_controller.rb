@@ -11,7 +11,7 @@ module ForemanMco
     def submit_command
       response = mco_proxy.test
       if response
-        CommandStatus.create!(:jid => response)
+        CommandStatus.create!(:command => @command, :jid => response)
         process_success :success_redirect => hosts_path(), :success_msg => _("'%s' command has been queued up for execution") % command
       else
         process_error :redirect => hosts_path(), :error_msg => _("'%s' command has not been queued up: %s") % [command, 'fail!']

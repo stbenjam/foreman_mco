@@ -10,7 +10,7 @@ class ForemanMco::CommandStatus < ActiveRecord::Base
 
   before_validation :set_default_status
 
-  validates :jid, :presence => true
+  validates :command, :jid, :presence => true
   validates :status, :inclusion => { :in => TYPES }
 
   def set_default_status
