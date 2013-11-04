@@ -1,3 +1,5 @@
+require 'deface'
+
 module ForemanMco
   ENGINE_NAME = "foreman_mco"
 
