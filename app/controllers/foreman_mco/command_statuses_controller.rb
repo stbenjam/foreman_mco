@@ -11,11 +11,5 @@ module ForemanMco
       @command_status = ForemanMco::CommandStatus.find_by_jid(params[:id])
       render_error 'not_found', :status => :not_found and return false unless @command_status
     end
-
-    #TODO: fix authentication
-    def authorize
-      User.current = User.admin
-      true
-    end
   end
 end

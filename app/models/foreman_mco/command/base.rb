@@ -4,7 +4,7 @@ module ForemanMco::Command
 
     def execute
       response = invoke()
-      CommandStatus.create!(:command => self.to_s, :jid => response)
+      ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response)
     end
 
     def mco_proxy
