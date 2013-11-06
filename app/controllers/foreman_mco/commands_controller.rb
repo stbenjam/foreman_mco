@@ -1,9 +1,12 @@
+require 'foreman_mco/commands'
+
 module ForemanMco
   class CommandsController < ::ApplicationController
-    attr_reader :command, :mco_proxy
+    attr_reader :command
     before_filter :find_command, :only => [:submit_command]
 
-    def install_package
+    [:install_package, :uninstall_package, :service_status, :start_service, :stop_service, :install_package, :uninstall_package, :ping].each do |cmd|
+      define_method(cmd) {}
     end
 
     #TODO: a possible race condition here -- proxy *can* process remote job before we get to CommandStatus creation

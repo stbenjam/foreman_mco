@@ -18,7 +18,14 @@ module ForemanMco::HostsHelper
     actions <<  [_('Run Puppet'), multiple_puppetrun_hosts_path, 'play'] if Setting[:puppetrun]
     actions <<  [_('Assign Organization'), select_multiple_organization_hosts_path, 'tags'] if SETTINGS[:organizations_enabled]
     actions <<  [_('Assign Location'), select_multiple_location_hosts_path, 'map-marker'] if SETTINGS[:locations_enabled]
-    actions <<  [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action'] if Setting[:use_mco]
+    if Setting[:use_mco]
+      actions <<  [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Ping'), ping_commands_path, 'pencil', 'mco-action']
+    end
 
     content_tag :span, :id => 'submit_multiple' do
       select_action_button( _("Select Action"), actions.map do |action|

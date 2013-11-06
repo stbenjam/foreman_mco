@@ -2,6 +2,8 @@ module ForemanMco::Command
   class Base
     include ::ActiveModel::Validations
 
+    def initialize(attrs = {}); end
+
     def execute
       response = invoke()
       ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response)
