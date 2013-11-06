@@ -13,12 +13,11 @@ Gem::Specification.new do |s|
   s.summary     = "Summary of ForemanMco."
   s.description = "Description of ForemanMco."
   s.licenses = ["GPL-3"]
-  
+
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
   s.test_files = Dir["test/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", "~> 3.2.15"
   s.add_dependency "deface"
   s.add_development_dependency "sqlite3"
 end
