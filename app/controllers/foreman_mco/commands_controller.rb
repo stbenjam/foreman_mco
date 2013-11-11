@@ -27,7 +27,7 @@ module ForemanMco
       clazz = ("ForemanMco::Command::" + command_hash[:command].camelize).constantize
       @command = clazz.new(command_hash)
 
-      return process_error(:redirect => :back, :object => @command, :error_msg => _("Invalid command parametres")) unless @command.valid?
+      return process_error(:redirect => :back, :object => @command, :error_msg => _("Invalid command parametres: %s") % command.errors.full_messages) unless @command.valid?
 
       @command
     rescue NameError => e
