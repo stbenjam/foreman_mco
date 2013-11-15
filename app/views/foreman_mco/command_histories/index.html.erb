@@ -1,0 +1,23 @@
+<% title _("MCollective History") %>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th><%= sort :command, :as => s_("Agent and Command") %></th>
+    <th><%= sort :created_at, :as => _("Start Time") %></th>
+    <th><%= sort :updated_at, :as => _("Last Updated") %></th>
+    <th><%= sort :status, :as => _("Status") %></th>
+    <th><%= _('Result') %></th>
+  </tr>
+  <% for command_status in @command_statuses %>
+    <tr>
+      <td><%= command_status.command %></td>
+      <td><%= command_status.created_at %></td>
+      <td><%= command_status.updated_at %></td>
+      <td><%= command_status.status %></td>
+      <td><%= command_status.result %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= page_entries_info @command_statuses %>
+<%= will_paginate @command_statuses %>

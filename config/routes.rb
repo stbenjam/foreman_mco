@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post :submit_command, :on => :collection
     end
 
+    resources :command_histories, :only => [:index]
     resources :command_statuses, :only => [:update]
   end
 end
