@@ -12,12 +12,12 @@ module ForemanMco
     #TODO: a possible race condition here -- proxy *can* process remote job before we get to CommandStatus creation
     def submit_command
       if @command.execute
-        process_success :success_redirect => hosts_path(), :success_msg => _("'%s' command has been queued up for execution") % command
+        process_success :success_redirect => :back, :success_msg => _("'%s' command has been queued up for execution") % command
       else
-        process_error :redirect => hosts_path(), :error_msg => _("'%s' command has not been queued up: %s") % [command, 'fail!']
+        process_error :redirect => :back, :error_msg => _("'%s' command has not been queued up: %s") % [command, 'fail!']
       end
     rescue => e
-      process_error :redirect => hosts_path(), :error_msg => _("'%s' command has not been queued up: %s") % [command, e]
+      process_error :redirect => :back, :error_msg => _("'%s' command has not been queued up: %s") % [command, e]
     end
 
     def find_command

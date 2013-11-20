@@ -13,3 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require scoped_search
+//= require twitter/bootstrap
+//= require topbar
+//= require two-pane
+//= require vendor
+//= require about
+//= require jquery.extentions

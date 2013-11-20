@@ -1,3 +1,4 @@
+<%= javascript "foreman_mco/mcollective_history" %>
 <% title _("MCollective History") %>
 
 <% title_actions multiple_mco_actions_select %>
@@ -20,6 +21,19 @@
     </tr>
   <% end %>
 </table>
+
+<div id="confirmation-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3><%= _('Please Confirm') %></h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary"><%= _('Submit') %></a>
+    <a href="#" class="btn secondary"><%= _('Cancel') %></a>
+  </div>
+</div>
+
 
 <%= page_entries_info @command_statuses %>
 <%= will_paginate @command_statuses %>
