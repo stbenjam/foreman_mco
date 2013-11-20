@@ -12,8 +12,8 @@ module ForemanMco::Command
   end
 
   class ServiceStatus < ServiceBase
-    def invoke
-      mco_proxy.service_status(service_name)
+    def command
+      {:command => :service_status, :args => service_name}
     end
 
     def to_s
@@ -22,8 +22,8 @@ module ForemanMco::Command
   end
 
   class StartService < ServiceBase
-    def invoke
-      mco_proxy.start_service(service_name)
+    def command
+      {:command => :start_service, :args => service_name}
     end
 
     def to_s
@@ -32,8 +32,8 @@ module ForemanMco::Command
   end
 
   class StopService < ServiceBase
-    def invoke
-      mco_proxy.stop_service(service_name)
+    def command
+      {:command => :stop_service, :args => service_name}
     end
 
     def to_s

@@ -24,7 +24,6 @@ module ForemanMco::HostsHelper
       actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action']
       actions <<  [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-action']
       actions <<  [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Ping'), ping_commands_path, 'pencil', 'mco-action']
     end
 
     content_tag :span, :id => 'submit_multiple' do

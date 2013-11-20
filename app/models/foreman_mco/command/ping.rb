@@ -1,7 +1,7 @@
 module ForemanMco::Command
   class Ping < Base    
-    def invoke
-      mco_proxy.ping
+    def command
+      {:command => :ping}
     end
 
     def to_s

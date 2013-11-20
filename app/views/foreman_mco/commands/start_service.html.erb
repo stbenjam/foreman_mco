@@ -1,4 +1,5 @@
 <%= form_for :command, :url => submit_command_commands_path() do |f| %>
+  <%= f.hidden_field :filters, :value => @filters %>
   <%= f.hidden_field :command, :value => "start_service" %>
   <%= f.text_field :service_name %>
   <span class="label label-warning"><%= _('Warning') %></span>

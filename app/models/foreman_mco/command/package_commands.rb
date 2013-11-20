@@ -12,8 +12,8 @@ module ForemanMco::Command
   end
 
   class InstallPackage < BasePackage
-    def invoke
-      mco_proxy.install_package(@package_name)
+    def command
+      {:command => :install_package, :args => @package_name}
     end
 
     def to_s
@@ -22,8 +22,8 @@ module ForemanMco::Command
   end
 
   class UninstallPackage < BasePackage
-    def invoke
-      mco_proxy.uninstall_package(@package_name)
+    def command
+      {:command => :uninstall_package, :args => @package_name}
     end
 
     def to_s

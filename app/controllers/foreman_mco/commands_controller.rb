@@ -2,10 +2,13 @@ require 'foreman_mco/commands'
 
 module ForemanMco
   class CommandsController < ::ApplicationController
+    COMMANDS = [:install_package, :uninstall_package, :service_status, :start_service, :stop_service, :install_package, :uninstall_package, :ping]
+
     attr_reader :command
     before_filter :find_command, :only => [:submit_command]
+    before_filter :filter_by_hosts, :only => COMMANDS
 
-    [:install_package, :uninstall_package, :service_status, :start_service, :stop_service, :install_package, :uninstall_package, :ping].each do |cmd|
+    COMMANDS.each do |cmd|
       define_method(cmd) {}
     end
 
@@ -32,6 +35,11 @@ module ForemanMco
       @command
     rescue NameError => e
       return process_error(:redirect => :back, :object => @command, :error_msg => _("Invalid command '%s'") % params[:command])
+    end
+
+    def filter_by_hosts
+      host_names = params[:host_ids].nil? ? [] : Host.select(:name).where(:id => params[:host_ids]).collect(&:name)
+      @filters = host_names.collect {|n| ::ForemanMco::Command::Filter.identity_filter(n)}
     end
   end
 end
