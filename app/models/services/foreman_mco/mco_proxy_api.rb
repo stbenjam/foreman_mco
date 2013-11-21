@@ -5,31 +5,31 @@ class ForemanMco::McoProxyApi < ::ProxyAPI::Resource
   end
 
   def test
-    parse(resource["test/test_command"].post(:name => "blah", 'params' => {:filters => filters}))
+    parse(resource["test/test_command"].post(:name => "blah", 'params' => {:filters => filters.to_json}))
   end
 
   def install_package(package_name, filters)
-    parse(resource["packages/#{package_name}"].post({}, 'params' => {:filters => filters}))
+    parse(resource["packages/#{package_name}"].post({}, 'params' => {:filters => filters.to_json}))
   end
 
   def uninstall_package(package_name, filters)
-    parse(resource["packages/#{package_name}"].delete('params' => {:filters => filters}))
+    parse(resource["packages/#{package_name}"].delete('params' => {:filters => filters.to_json}))
   end
 
   def service_status(service_name, filters)
-    parse(resource[ "services/#{service_name}"].get('params' => {:filters => filters}))
+    parse(resource[ "services/#{service_name}"].get('params' => {:filters => filters.to_json}))
   end
 
   def start_service(service_name, filters)
-    parse(resource["services/#{service_name}/start"].post({}, 'params' => {:filters => filters}))
+    parse(resource["services/#{service_name}/start"].post({}, 'params' => {:filters => filters.to_json}))
   end
 
   def stop_service(service_name, filters)
-    parse(resource["services/#{service_name}/stop"].post({}, 'params' => {:filters => filters}))
+    parse(resource["services/#{service_name}/stop"].post({}, 'params' => {:filters => filters.to_json}))
   end
 
   def ping
-    parse(resource["ping"].get('params' => {:filters => filters}))
+    parse(resource["ping"].get('params' => {:filters => filters.to_json}))
   end
 
   def parse(response)
