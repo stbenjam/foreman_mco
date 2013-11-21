@@ -8,7 +8,12 @@ module ForemanMco::Command
     end
 
     def execute
-      response = mco_proxy.send(*([command[:command], command[:args], filters].compact))
+      unless command[:args].nil?
+        args = command[:args].join(",")
+      else
+        raise("You must provide arguments to the filter operation")
+      end
+      response = mco_proxy.send([command[:command], args, filters].compact)
       ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response)
     end
 
