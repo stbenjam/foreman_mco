@@ -8,16 +8,9 @@ module ForemanMco::Command
     end
 
     def execute
-      unless command[:args].nil?
-        args = command[:args].join(",")
-      else
-        raise("You must provide arguments to the filter operation")
-      end
-      response = mco_proxy.send([command[:command], args, filters].compact)
+      response = remote_call
       ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response)
     end
-
-    def command; {}; end
 
     def mco_proxy
       return @mco_proxy if @mco_proxy

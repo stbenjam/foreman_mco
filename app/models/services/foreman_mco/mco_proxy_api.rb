@@ -28,7 +28,7 @@ class ForemanMco::McoProxyApi < ::ProxyAPI::Resource
     parse(resource["services/#{service_name}/stop"].post({}, 'params' => {:filters => filters}))
   end
 
-  def ping
+  def ping(filters)
     parse(resource["ping"].get('params' => {:filters => filters.to_json}))
   end
 

@@ -1,7 +1,7 @@
 module ForemanMco::Command
   class Ping < Base    
-    def command
-      {:command => :ping}
+    def remote_call
+      mco_proxy.ping(filters)
     end
 
     def to_s
