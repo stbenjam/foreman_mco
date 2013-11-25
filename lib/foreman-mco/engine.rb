@@ -18,7 +18,7 @@ module ForemanMco
 
     config.to_prepare do
       ::HostsHelper.send :include, ForemanMco::HostsHelper
-      ::HomeHelper.send :include, ForemanMco::HomeHelper
+      ::Menu::Loader.send :include, ForemanMco::MenuHelper
     end
   end
 
