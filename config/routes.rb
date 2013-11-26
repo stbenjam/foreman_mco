@@ -14,5 +14,9 @@ Rails.application.routes.draw do
       get :auto_complete_search, :on => :collection
     end
     resources :command_statuses, :only => [:update]
+
+    # TODO: remove this pretty nasty hack. It's necessary because of a bug
+    # in Foreman core routing which causes routes to contain the engine prefix.
+    match 'users/(:action)', :to => 'users#(:action)'
   end
 end
