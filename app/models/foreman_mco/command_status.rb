@@ -8,6 +8,7 @@ class ForemanMco::CommandStatus < ActiveRecord::Base
   
   TYPES = [PENDING, SUCCESS, WARNING, FAILURE]
 
+  has_many :host_command_statuses
   before_validation :set_default_status
 
   validates :command, :jid, :presence => true
