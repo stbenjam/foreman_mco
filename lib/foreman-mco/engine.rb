@@ -19,10 +19,11 @@ module ForemanMco
       Foreman::Plugin.register :foreman_discovery do
         requires_foreman '> 1.3'
 
+        sub_menu :top_menu, :orchestration_menu, :caption => N_('Orchestration') do
+        end
         menu :top_menu, :mco_history, :url_hash => {:controller=> :command_histories, :action=>:index},
           :caption=> N_('MCollective Command History'),
-          :parent => :monitor_menu,
-          :after=>:audits
+          :parent => :orchestration_menu
         end
     end
 
