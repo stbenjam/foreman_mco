@@ -21,7 +21,7 @@ module ForemanMco
 
         sub_menu :top_menu, :orchestration_menu, :caption => N_('Orchestration') do
         end
-        menu :top_menu, :mco_history, :url_hash => {:controller=> :command_histories, :action=>:index},
+        menu :top_menu, :mco_history, :url_hash => {:controller=> "foreman_mco/command_histories", :action=>:index},
           :caption=> N_('MCollective Command History'),
           :parent => :orchestration_menu
         end
