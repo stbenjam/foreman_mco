@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     end
 
     resources :command_histories, :only => [:index] do
+      resources :detailed_command_histories, :only => :index
       get :auto_complete_search, :on => :collection
-    end
+    end    
     resources :command_statuses, :only => [:update]
   end
 end

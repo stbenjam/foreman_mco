@@ -9,7 +9,7 @@ module ForemanMco::Command
 
     def execute
       response = remote_call
-      ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response)
+      ::ForemanMco::CommandStatus.create!(:command => self.to_s, :jid => response.split("/tasks/")[1])
     end
 
     def mco_proxy

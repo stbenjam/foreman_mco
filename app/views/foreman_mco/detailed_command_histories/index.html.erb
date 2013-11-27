@@ -1,0 +1,25 @@
+<% title _("Results") %>
+
+<% title_actions %>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th><%= sort :host, :as => s_("Host") %></th>
+    <th><%= sort :status_code, :as => s_("Status Code") %></th>
+    <th><%= sort :status_message, :as => _("Status Message") %></th>
+    <th><%= sort :created_at, :as => _("Timestamp") %></th>
+    <th><%= _('Result') %></th>
+  </tr>
+  <% for detail in @details %>
+    <tr>
+      <td><%= detail.host %></td>
+      <td><%= detail.status_code %></td>
+      <td><%= detail.status_message %></td>
+      <td><%= detail.created_at %></td>
+      <td><%= detail.result %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= page_entries_info @details %>
+<%= will_paginate @details %>

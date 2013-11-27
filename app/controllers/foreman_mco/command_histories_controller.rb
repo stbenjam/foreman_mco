@@ -15,9 +15,12 @@ module ForemanMco
       @command_statuses = search.paginate(:page => params[:page])
     end
 
+    def detailed
+      @details = HostCommandStatus.where(:command_status_id => params[:id])
+    end
+
     def model_of_controller
       CommandStatus
     end
-
   end
 end

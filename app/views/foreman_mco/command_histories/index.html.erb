@@ -14,7 +14,10 @@
     </tr>
     <% for command_status in @command_statuses %>
       <tr>
-        <td><%= command_status.command %></td>
+        <td><%= link_to_if(!command_status.result.empty?, command_status.command, command_history_detailed_command_histories_path(command_status)) do
+                  command_status.command
+                end
+        %></td>
         <td><%= command_status.created_at %></td>
         <td><%= command_status.updated_at %></td>
         <td><%= command_status.status %></td>
