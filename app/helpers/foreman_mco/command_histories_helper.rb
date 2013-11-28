@@ -2,7 +2,12 @@ module ForemanMco::CommandHistoriesHelper
   def multiple_mco_actions_select
     actions = [
       [_('Ping'), ping_commands_path, 'pencil', 'mco-action'],
-      [_('Pong'), ping_commands_path, 'pencil', 'mco-action']
+      [_('Pong'), ping_commands_path, 'pencil', 'mco-action'],
+      [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action'],
+      [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-action'],
+      [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action'],
+      [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-action'],
+      [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-action']
     ]
 
     content_tag :span, :id => 'submit_multiple' do
