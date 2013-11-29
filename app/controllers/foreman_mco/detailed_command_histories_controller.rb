@@ -13,6 +13,7 @@ module ForemanMco
         search = HostCommandStatus.where(:command_status_id => params[:command_history_id])
       end
       @details = search.paginate(:page => params[:page])
+      @hosts = Host.my_hosts.select([:id, :name]).where(:name => @details.collect(&:host)).index_by(&:name)
     end
 
     def controller_name

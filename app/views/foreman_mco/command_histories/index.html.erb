@@ -6,7 +6,7 @@
 <% if any_commands_run? %>
   <table class="table table-bordered table-striped">
     <tr>
-      <th><%= sort :command, :as => s_("Agent and Command") %></th>
+      <th><%= sort :command, :as => s_("Agent/Command") %></th>
       <th><%= sort :created_at, :as => _("Start Time") %></th>
       <th><%= sort :updated_at, :as => _("Last Updated") %></th>
       <th><%= sort :status, :as => _("Status") %></th>
@@ -18,8 +18,8 @@
                   command_status.command
                 end
         %></td>
-        <td><%= command_status.created_at %></td>
-        <td><%= command_status.updated_at %></td>
+        <td><%= time_ago_in_words(command_status.created_at.getlocal) %></td>
+        <td><%= time_ago_in_words(command_status.updated_at.getlocal) %></td>
         <td><%= command_status.status %></td>
         <td><%= command_status.result %></td>
       </tr>

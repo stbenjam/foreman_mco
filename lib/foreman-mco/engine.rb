@@ -19,12 +19,22 @@ module ForemanMco
       Foreman::Plugin.register :foreman_discovery do
         requires_foreman '> 1.3'
 
-        sub_menu :top_menu, :orchestration_menu, :caption => N_('Orchestration') do
+        sub_menu :top_menu, :orchestration_menu, :caption => N_('Orchestration')
+
+        ::Menu::Manager.map :top_menu do |menu|
+          mm = menu.find(:monitor_menu)
+          old_reports = mm.find {|i| i.name == :reports}
+          mm.remove!(old_reports)          
         end
+
+        sub_menu :top_menu, :reports, :parent => :monitor_menu, :caption => N_('Reports')
+        menu :top_menu, :puppet_reports, :url_hash => {:controller => '/reports', :action => 'index', :search => 'eventful = true'},
+          :caption=> N_('Puppet Reports'),
+          :parent => :reports
         menu :top_menu, :mco_history, :url_hash => {:controller=> "foreman_mco/command_histories", :action=>:index},
           :caption=> N_('MCollective Command History'),
-          :parent => :orchestration_menu
-        end
+          :parent => :reports
+      end
     end
 
     initializer "foreman_mco.load_app_instance_data" do |app|

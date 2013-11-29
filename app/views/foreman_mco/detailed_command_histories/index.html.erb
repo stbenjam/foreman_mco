@@ -12,10 +12,11 @@
   </tr>
   <% for detail in @details %>
     <tr>
-      <td><%= detail.host %></td>
+      <td><%= link_to_if(@hosts.has_key?(detail.host), detail.host, @hosts.has_key?(detail.host) ? hash_for_host_path(:id => @hosts[detail.host].id) : {})
+          %></td>
       <td><%= detail.status_code %></td>
       <td><%= detail.status_message %></td>
-      <td><%= detail.created_at %></td>
+      <td><%= time_ago_in_words(detail.created_at.getlocal) %></td>
       <td><%= detail.result %></td>
     </tr>
   <% end %>
