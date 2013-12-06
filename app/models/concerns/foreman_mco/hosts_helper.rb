@@ -5,12 +5,12 @@ module ForemanMco::HostsHelper
     actions = []
 
     if Setting[:use_mco]
-      actions <<  [_('Ping'), ping_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-action']
-      actions <<  [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-action']
+      actions <<  [_('Ping'), ping_commands_path, 'pencil']
+      actions <<  [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-filtered']
     end
 
     content_tag :span, :id => 'mco_submit_multiple' do

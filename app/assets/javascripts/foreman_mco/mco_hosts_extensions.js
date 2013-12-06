@@ -1,6 +1,7 @@
 $(function() {
   $('#mco_submit_multiple a').click(function(){
     if ($(this).hasClass('dropdown-toggle')) { return false }
+    if ($(this).hasClass('disabled')) { return false }
     var title = $(this).attr('data-original-title');
     var url = $(this).attr('href') + "?" + $.param({host_ids: $.foremanSelectedHosts});
     $('#confirmation-modal .modal-header h3').text(title);
@@ -32,13 +33,17 @@ $(function() {
 original_toggle_actions = toggle_actions
 function mco_toggle_actions() {
   original_toggle_actions();
-  var dropdown = $("#mco_submit_multiple a");
+  var dropdown = $("ul.dropdown-menu li a.mco-filtered");
   if ($.foremanSelectedHosts.length == 0) {
-    dropdown.addClass("disabled hide");
-    dropdown.attr('disabled', 'disabled');
+    dropdown.each(function() {
+      $(this).addClass('disabled')
+      $(this).css({'color': 'lightgray'}) 
+    });
   } else {
-    dropdown.removeClass("disabled hide");
-    dropdown.removeAttr('disabled');
+    dropdown.each(function() {
+      $(this).removeClass('disabled') 
+      $(this).css({'color': 'black'}) 
+    });
   }
 }
 toggle_actions = mco_toggle_actions
