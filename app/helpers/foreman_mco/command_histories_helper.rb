@@ -1,25 +1,6 @@
 module ForemanMco::CommandHistoriesHelper
-  def multiple_mco_actions_select
-    actions = [
-      [_('Ping'), ping_commands_path, 'pencil', 'mco-action'],
-      [_('Pong'), ping_commands_path, 'pencil', 'mco-action'],
-      [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action'],
-      [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-action'],
-      [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action'],
-      [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-action'],
-      [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-action']
-    ]
-
-    content_tag :span, :id => 'submit_multiple' do
-      select_action_button( _("Select Action"), actions.map do |action|
-        link_to(icon_text(action[2], action[0]) , action[1], :class=>'btn',  :title => _("'%s' is about to be executed.") % action[0])
-      end.flatten)
-    end
-  end
-
   def any_commands_run?
     return true unless (@command_statuses.count == 0)
     false
   end
-
 end

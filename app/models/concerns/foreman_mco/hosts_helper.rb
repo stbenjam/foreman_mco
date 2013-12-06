@@ -5,6 +5,7 @@ module ForemanMco::HostsHelper
     actions = []
 
     if Setting[:use_mco]
+      actions <<  [_('Ping'), ping_commands_path, 'pencil', 'mco-action']
       actions <<  [_('Install Package'),  install_package_commands_path, 'pencil', 'mco-action']
       actions <<  [_('Uninstall Package'),  uninstall_package_commands_path, 'pencil', 'mco-action']
       actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-action']
