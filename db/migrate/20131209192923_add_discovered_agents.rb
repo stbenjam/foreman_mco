@@ -14,7 +14,7 @@ class AddDiscoveredAgents < ActiveRecord::Migration
   end
 
   def down
-    drop_table :discovered_agents
-    drop_table :discovered_agent_fields
+    drop_table :foreman_mco_discovered_agents
+    drop_table :foreman_mco_discovered_agent_fields
   end
 end
