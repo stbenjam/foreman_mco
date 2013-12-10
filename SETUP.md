@@ -34,3 +34,5 @@ Then, run the following steps.
 If you've already got the machine you're going to be using as your MCollective proxy setup as a smart-proxy in your Foreman instance, then just click the "Refresh Features" button on the proxy listing page. If not, then you'll need to add your new proxy in Foreman. Make sure port 3000 is open to your Foreman instance's address.
 
 You should now have an option on the host and hostgroup edit page to assign that host or hostgroup a default MCollective proxy. There is no validation right now to ensure the host is part of the collective of the proxy it's assigned so please make sure the target host and proxy host and running on the same collective.
+
+Finally, edit `config/settings.yml` on the proxy so jobs can alert Foreman to they are complete.
