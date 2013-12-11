@@ -4,6 +4,8 @@
 
 You can setup any node as a MCollective proxy. MCollective doesn't have an idea of a master and slave so any host can run a command across any other node in the collective. You might want to install your proxy on the same machine as where your AMQP server runs just for the sake of management, but other than that it doesn't matter.
 
+If you don't already have MCollective setup, [this](http://www.aeg0.com/2012/09/22/installing-mcollective-2-dot-2-0-on-centos-6/) guide has really simple steps for getting started. The foreman-installer will ultimately probably have support for mcollective installation.
+
 ## Install the plugin for Foreman
 
 It's recommended that you use a git-based installation of foreman core for now because the plugin is not yet packaged as a RPM or deb. There are instructions on how to do that [here](http://theforeman.org/manuals/1.1/index.html#3.4InstallFromSource).
