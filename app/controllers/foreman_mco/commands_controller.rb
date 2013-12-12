@@ -38,8 +38,8 @@ module ForemanMco
     end
 
     def filter_by_hosts
-      host_names = params[:host_ids].nil? ? [] : Host.select(:name).where(:id => params[:host_ids]).collect(&:name)
-      @filters = host_names.collect {|n| ::ForemanMco::Command::Filter.identity_filter(n)}.to_json
+      @hosts = params[:host_ids].nil? ? [] : Host.select(:name).where(:id => params[:host_ids])
+      @filters = @hosts.collect(&:name).collect {|n| ::ForemanMco::Command::Filter.identity_filter(n)}.to_json
     end
   end
 end
