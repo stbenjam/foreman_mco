@@ -1,6 +1,9 @@
 module ForemanMco
   class CommandStatusesController < ::Api::V2::BaseController
     include ::Foreman::Controller::SmartProxyAuth
+
+    add_puppetmaster_filters([:update])
+
     before_filter :find_status, :only => [:update]
     before_filter :parse_results, :only => [:update]
 
@@ -27,6 +30,20 @@ module ForemanMco
       end
 
       to_ret
+    end
+
+    def require_mco_proxy_or_login
+      if auth_smart_proxy(SmartProxy.mcollective_proxies, false)
+        set_admin_user
+        return true
+      end
+
+      require_login
+      unless User.current
+        render_error 'access_denied', :status => :forbidden unless performed? and api_request?
+        return false
+      end
+      authorize
     end
   end
 end

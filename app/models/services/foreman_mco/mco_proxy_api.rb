@@ -28,6 +28,18 @@ class ForemanMco::McoProxyApi < ::ProxyAPI::Resource
     parse(resource["services/#{service_name}/stop"].post({}, 'params' => {:filters => filters}))
   end
 
+  def puppet_runonce(filters)
+    parse(resource["puppet/runonce"].post({}, 'params' => {:filters => filters}))
+  end
+
+  def puppet_enable(filters)
+    parse(resource["puppet/enable"].post({}, 'params' => {:filters => filters}))
+  end
+
+  def puppet_disable(filters)
+    parse(resource["puppet/disable"].post({}, 'params' => {:filters => filters}))
+  end
+
   def ping(filters)
     parse(resource["ping"].get('params' => {:filters => filters}))
   end

@@ -2,7 +2,10 @@ require 'foreman_mco/commands'
 
 module ForemanMco
   class CommandsController < ::ApplicationController
-    COMMANDS = [:install_package, :uninstall_package, :service_status, :start_service, :stop_service, :install_package, :uninstall_package, :ping]
+    COMMANDS = [:install_package, :uninstall_package, :service_status, :start_service,
+      :stop_service, :install_package, :uninstall_package,
+      :puppet_runonce, :puppet_enable, :puppet_disable,
+      :ping]
 
     attr_reader :command
     before_filter :find_command, :only => [:submit_command]

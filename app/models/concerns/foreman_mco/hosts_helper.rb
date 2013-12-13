@@ -11,6 +11,9 @@ module ForemanMco::HostsHelper
       actions <<  [_('Service Status'),  service_status_commands_path, 'pencil', 'mco-filtered']
       actions <<  [_('Start Service'),  start_service_commands_path, 'pencil', 'mco-filtered']
       actions <<  [_('Stop Service'),  stop_service_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Puppet Runonce'),  puppet_runonce_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Puppet Enable'),  puppet_enable_commands_path, 'pencil', 'mco-filtered']
+      actions <<  [_('Puppet Disable'),  puppet_disable_commands_path, 'pencil', 'mco-filtered']
     end
 
     content_tag :span, :id => 'mco_submit_multiple' do

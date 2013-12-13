@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       get :service_status, :on => :collection
       get :start_service, :on => :collection
       get :stop_service, :on => :collection
+      get :puppet_runonce, :on => :collection
+      get :puppet_enable, :on => :collection
+      get :puppet_disable, :on => :collection
       get :ping, :on => :collection
       post :submit_command, :on => :collection
     end
