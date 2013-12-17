@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = ForemanMco::VERSION
   s.authors     = ["Dmitri Dolguikh", "Sam Kottler"]
   s.email       = ["dmitri@appliedlogic.ca", "skottler@redhat.com"]
-  s.homepage    = "http://localhost"
-  s.summary     = "Summary of ForemanMco."
-  s.description = "Description of ForemanMco."
+  s.homepage    = "https://github.com/witlessbird/foreman_mco"
+  s.summary     = "Manage remote execution using Foreman + MCollective"
+  s.description = "Manage remote execution using Foreman + MCollective"
   s.licenses = ["GPL-3"]
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
