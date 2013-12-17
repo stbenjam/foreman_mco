@@ -25,12 +25,11 @@ Next, we'll setup the proxy and necessary workers. But first, you need to instal
 Then, run the following steps.
 
 1. `git clone -b mcollective https://github.com/skottler/smart-proxy`
-2. `bundle install`
-3. `cp config/settings.yaml.example config/settings.yaml`
-4. Set the `:mcollective` option to true in config/settings.yaml
-5. `bundle install`
-6. `bundle exec ./bin/smart-proxy`
-7. (in a different shell) `bundle exec ./bin/async-workers`
+2. `cp config/settings.yaml.example config/settings.yaml`
+3. Set the `:mcollective` option to true in config/settings.yaml
+4. `bundle install`
+5. `bundle exec ./bin/smart-proxy`
+6. (in a different shell) `bundle exec ./bin/async-workers`
 
 ## Add MCollective proxy to Foreman
 If you've already got the machine you're going to be using as your MCollective proxy setup as a smart-proxy in your Foreman instance, then just click the "Refresh Features" button on the proxy listing page. If not, then you'll need to add your new proxy in Foreman. Make sure port 3000 is open to your Foreman instance's address.
