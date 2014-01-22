@@ -16,10 +16,8 @@ module ForemanMco::HostsHelper
       actions <<  [_('Puppet Disable'),  puppet_disable_commands_path, 'pencil', 'mco-filtered']
     end
 
-    content_tag :span, :id => 'mco_submit_multiple' do
-      select_action_button( _("Select MCO Action"), actions.map do |action|
-        link_to(icon_text(action[2], action[0]) , action[1], :class=>'btn ' + (action.try(:[], 3) || ''),  :title => _("%s - The following hosts are about to be changed") % action[0])
-      end.flatten)
-    end
+    select_action_button( _("Select MCO Action"), {:id => 'mco_submit_multiple'}, actions.map do |action|
+      link_to(icon_text(action[2], action[0]) , action[1], :class=>'btn ' + (action.try(:[], 3) || ''),  :title => _("%s - The following hosts are about to be changed") % action[0])
+    end.flatten)
   end
 end
