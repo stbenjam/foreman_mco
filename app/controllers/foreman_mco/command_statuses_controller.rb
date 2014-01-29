@@ -5,10 +5,12 @@ module ForemanMco
     add_puppetmaster_filters([:update])
 
     before_filter :find_status, :only => [:update]
-    before_filter :parse_results, :only => [:update]
+#    before_filter :parse_results, :only => [:update]
 
     def update
-      process_response @command_status.update_attributes!(params[:command_status])
+      ForemanTasks.dynflow.world.executor.event(@command_status.execution_plan_id, 2, params[:command_status])
+      render :nothing => true, :status => 200, :content_type => :json
+#      process_response @command_status.update_attributes!(params[:command_status])
     end
 
     def find_status

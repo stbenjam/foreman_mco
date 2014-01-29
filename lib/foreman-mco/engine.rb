@@ -15,6 +15,10 @@ module ForemanMco
       require_dependency File.expand_path("../../../app/models/setting/mco.rb", __FILE__) if (Setting.table_exists? rescue(false))
     end
 
+    initializer "foreman_mco.dynflow_initialize" do |app|
+      ForemanTasks.dynflow.require!
+    end
+
     initializer 'foreman_mco.register_plugin', :after=> :finisher_hook do |app|
       Foreman::Plugin.register :foreman_discovery do
         requires_foreman '> 1.3'
