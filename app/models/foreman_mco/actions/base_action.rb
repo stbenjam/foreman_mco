@@ -42,19 +42,18 @@ module ForemanMco
       end
 
       def parse_results(command_status)
-        return if output[:command_status][:result].nil?
-        output[:command_status][:result].each {|host_status| command_status.host_command_statuses.build(to_foreman_schema(host_status))}
+        return if output[:command_status].nil?
+        output[:command_status].each {|host_status| command_status.host_command_statuses.build(to_foreman_schema(host_status))}
       end
 
       def to_foreman_schema(a_hash)
-        to_ret = {}
-        our_schema = { "sender" => "host", "statuscode" => "status_code", "statusmsg" => "status_message", "data" => "result" }
-
-        a_hash.each_pair do |k,v|
-          our_schema.has_key?(k) ? to_ret[our_schema[k]] = v : to_ret[k] = v
-        end
-
-        to_ret
+        {
+          :host => a_hash["senderid"],
+          :status_code => (a_hash["body"]["statuscode"] rescue ""),
+          :status_message => (a_hash["body"]["statusmsg"] rescue ""),
+          :result => (a_hash["body"]["data"] rescue ""),
+          :agent => a_hash["senderagent"]
+        }
       end
     end
   end
