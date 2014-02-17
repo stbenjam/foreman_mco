@@ -15,7 +15,6 @@ module ForemanMco
       define_method(cmd) {}
     end
 
-    #TODO: a possible race condition here -- proxy *can* process remote job before we get to CommandStatus creation
     def submit_command
       @command = ForemanTasks.trigger(@command_class, params[:command])
       if @command
@@ -33,7 +32,6 @@ module ForemanMco
 
       command_hash = params[:command]
       @command_class = ("ForemanMco::Actions::" + command_hash[:command].camelize).constantize
-#      return process_error(:redirect => :back, :object => @command, :error_msg => _("Invalid command parametres: %s") % command.errors.full_messages) unless @command.valid?
       @command_class
     rescue NameError => e
       return process_error(:redirect => :back, :object => @command, :error_msg => _("Invalid command '%s'") % params[:command])

@@ -16,17 +16,6 @@ module ForemanMco
       render_error 'not_found', :status => :not_found and return false unless @command_status
     end
 
-    def to_foreman_schema(a_hash)
-      to_ret = {}
-      our_schema = { "sender" => "host", "statuscode" => "status_code", "statusmsg" => "status_message", "data" => "result" }
-
-      a_hash.each_pair do |k,v|
-        our_schema.has_key?(k) ? to_ret[our_schema[k]] = v : to_ret[k] = v
-      end
-
-      to_ret
-    end
-
     def require_mco_proxy_or_login
       if auth_smart_proxy(SmartProxy.mcollective_proxies, false)
         set_admin_user
