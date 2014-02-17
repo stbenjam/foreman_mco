@@ -31,8 +31,8 @@ module ForemanMco
 
      def update_command_status
         status = find_status
-        parse_results(status)
-        status.update_attributes!(output[:command_status])
+        build_host_statuses(status)
+        status.update_attributes!(build_command_status)
       end
 
       def find_status
@@ -41,15 +41,40 @@ module ForemanMco
         status
       end
 
-      def parse_results(command_status)
+      def build_host_statuses(command_status)
         return if output[:command_status].nil?
         output[:command_status].each {|host_status| command_status.host_command_statuses.build(to_foreman_schema(host_status))}
+      end
+
+      def build_command_status()
+        return { :status => "No Data" } if output[:command_status].nil?
+        statuscodes = output[:command_status].collect {|cs| cs["body"]["statuscode"]}
+        { :status => status_code_to_message(statuscodes.first) }
+      end
+
+      def status_code_to_message(code)
+        case code
+        when 0
+          "Success"
+        when 1
+          "All the data parsed ok, we have a action matching the request but the requested action could not be completed."
+        when 2
+          "Unknown Action"
+        when 3
+          "Missing Data"
+        when 4
+          "Invalid Data"
+        when 5
+          "Other Error"
+        else 
+          "No Error Data"
+        end
       end
 
       def to_foreman_schema(a_hash)
         {
           :host => a_hash["senderid"],
-          :status_code => (a_hash["body"]["statuscode"] rescue ""),
+          :status_code => status_code_to_message(a_hash["body"]["statuscode"]),
           :status_message => (a_hash["body"]["statusmsg"] rescue ""),
           :result => (a_hash["body"]["data"] rescue ""),
           :agent => a_hash["senderagent"]

@@ -7,18 +7,16 @@
       <th><%= sort :created_at, :as => _("Start Time") %></th>
       <th><%= sort :updated_at, :as => _("Last Updated") %></th>
       <th><%= sort :status, :as => _("Status") %></th>
-      <th><%= _('Result') %></th>
     </tr>
     <% for command_status in @command_statuses %>
       <tr>
-        <td><%= link_to_if(!command_status.result.empty?, command_status.command, command_history_detailed_command_histories_path(command_status)) do
+        <td><%= link_to_if(!command_status.host_command_statuses.empty?, command_status.command, command_history_detailed_command_histories_path(command_status)) do
                   command_status.command
                 end
         %></td>
         <td><%= time_ago_in_words(command_status.created_at.getlocal) %></td>
         <td><%= time_ago_in_words(command_status.updated_at.getlocal) %></td>
         <td><%= command_status.status %></td>
-        <td><%= command_status.result %></td>
       </tr>
     <% end %>
   </table>

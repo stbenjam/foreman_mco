@@ -4,7 +4,6 @@ class CreateHostCommandStatuses < ActiveRecord::Migration
       t.references :command_status, :null => false
       t.column :host, :string, :null => false
       t.column :agent, :string, :null => false
-      t.column :action, :string, :null => false
       t.column :status_code, :string, :null => false
       t.column :status_message, :text, :null => false
       t.column :result, :text
@@ -13,5 +12,6 @@ class CreateHostCommandStatuses < ActiveRecord::Migration
   end
 
   def down
+    drop_table :foreman_mco_host_command_statuses
   end
 end

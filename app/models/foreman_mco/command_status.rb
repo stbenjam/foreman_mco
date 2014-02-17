@@ -3,16 +3,12 @@ class ForemanMco::CommandStatus < ActiveRecord::Base
 
   PENDING = "pending"
   SUCCESS = "success"
-  WARNING = "warning"
-  FAILURE = "failure"
-  
-  TYPES = [PENDING, SUCCESS, WARNING, FAILURE]
 
   has_many :host_command_statuses
   before_validation :set_default_status
 
   validates :command, :jid, :presence => true
-  validates :status, :inclusion => { :in => TYPES }
+#  validates :status, :inclusion => { :in => TYPES }
 
   default_scope lambda { order('foreman_mco_command_statuses.updated_at') }
 

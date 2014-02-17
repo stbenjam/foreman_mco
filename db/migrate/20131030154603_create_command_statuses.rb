@@ -5,7 +5,6 @@ class CreateCommandStatuses < ActiveRecord::Migration
       t.column :execution_plan_id, :string, :null => false
       t.column :command, :text, :null => false
       t.column :status, :string, :null => false
-      t.column :result, :text
       t.timestamps
     end
   end
