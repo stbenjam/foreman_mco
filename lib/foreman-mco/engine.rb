@@ -38,6 +38,12 @@ module ForemanMco
         menu :top_menu, :mco_history, :url_hash => {:controller=> "foreman_mco/command_histories", :action=>:index},
           :caption=> N_('MCollective Command History'),
           :parent => :reports
+
+        security_block :mcollective do
+          permission :execute_mco_commands, {:'foreman_mco/commands' => [:install_package, :uninstall_package, :service_status, :start_service, :stop_service, :install_package, :uninstall_package,
+            :puppet_runonce, :puppet_enable, :puppet_disable, :ping, :submit_command] }, :resource_type => "ForemanMco::Commands"
+        end
+        role "Execute MCO Commands", [:execute_mco_commands]
       end
     end
 

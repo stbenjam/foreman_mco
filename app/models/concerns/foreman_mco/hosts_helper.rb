@@ -2,6 +2,8 @@ module ForemanMco::HostsHelper
   extend ActiveSupport::Concern
 
   def mco_multiple_actions_select
+    return unless User.current.allowed_to?(:execute_mco_commands)
+
     actions = []
 
     if Setting[:use_mco]
